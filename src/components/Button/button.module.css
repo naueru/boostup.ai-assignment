@@ -1,0 +1,12 @@
+.container {
+  font-size: 28;
+  font-weight: bold;
+}
+.primary {
+  background-color: #ef6145;
+  color: white;
+}
+.secondary {
+  background-color: white;
+  color: #ef6145;
+}

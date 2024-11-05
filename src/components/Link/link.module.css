@@ -1,0 +1,27 @@
+.container {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link,
+.link:visited,
+.link:active {
+  color: #ef6145;
+}
+
+.link:hover {
+  color: #ef6145c4;
+  cursor: pointer;
+}
+
+.button,
+.button:visited,
+.button:active {
+  background-color: #ef6145;
+  color: white;
+}
+
+.button:hover {
+  background-color: #ef6145c4;
+  cursor: pointer;
+}
