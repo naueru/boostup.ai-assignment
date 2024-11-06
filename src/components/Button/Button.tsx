@@ -2,7 +2,7 @@
 import { FC } from "react";
 
 // Styles
-import styles from "./Button.module.css";
+import styles from "./button.module.css";
 
 export type TButton = {
   label: string;

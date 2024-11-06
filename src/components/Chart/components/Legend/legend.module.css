@@ -1,0 +1,29 @@
+.legendList {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  font-weight: 200;
+  gap: 5px;
+  list-style: none;
+  padding: 0px;
+}
+
+.legendListItem {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.identifier {
+  border: 1px solid rgb(186, 186, 186);
+  height: 8px;
+  width: 8px;
+}
+
+.legendListItem:first-child > .identifier {
+  background-color: #0969de;
+}
+.legendListItem:nth-child(2) > .identifier {
+  background-color: #de0909;
+}
