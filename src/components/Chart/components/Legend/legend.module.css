@@ -21,9 +21,6 @@
   width: 8px;
 }
 
-.legendListItem:first-child > .identifier {
-  background-color: #0969de;
-}
-.legendListItem:nth-child(2) > .identifier {
-  background-color: #de0909;
+.label {
+  text-transform: capitalize;
 }

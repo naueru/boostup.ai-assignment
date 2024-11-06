@@ -10,23 +10,23 @@ export const parseNation = (data: INationYear[] = []): IParsedElement[] => {
     const currentIndex = acc.findIndex(
       (c: IParsedElement) => c.label === current.Year
     );
+
+    const total = current["Total Population"];
+    const isForeing = current.Nativity === "Foreign born";
     if (currentIndex > -1) {
       acc[currentIndex] = {
         ...acc[currentIndex],
         data: {
-          ...acc[currentIndex].data,
-          [current.Nativity.replaceAll(" ", "").toLowerCase()]:
-            current["Total Population"],
+          total: acc[currentIndex].data.total + total,
+          foreign: isForeing ? total : 0,
         },
       };
     } else {
       acc.push({
         label: current.Year,
         data: {
-          native: 0,
-          foreignborn: 0,
-          [current.Nativity.replaceAll(" ", "").toLowerCase()]:
-            current["Total Population"],
+          foreign: isForeing ? total : 0,
+          total,
         },
       });
     }

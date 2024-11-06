@@ -1,0 +1,10 @@
+.container {
+  min-width: 250px;
+  padding: 16px;
+}
+
+.yearRangeFilter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
