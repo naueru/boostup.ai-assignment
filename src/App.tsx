@@ -1,6 +1,9 @@
 // Core
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+// Providers
+import QueryProvider from "./providers/QueryProvider";
+
 // Components
 import Dashboard from "./screens/Dashboard/Dashboard";
 import Detail from "./screens/Detail/Detail";
@@ -24,7 +27,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <QueryProvider>
+        <RouterProvider router={router} />
+      </QueryProvider>
     </div>
   );
 }
