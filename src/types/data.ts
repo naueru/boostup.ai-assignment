@@ -1,5 +1,5 @@
 export type TNativity = "Native" | "Foreign born";
-export type TParsedNativity = "native" | "foreignborn";
+export type TParsedNativity = "native" | "foreignborn" | "total";
 
 export interface INationYear {
   Year: number;
