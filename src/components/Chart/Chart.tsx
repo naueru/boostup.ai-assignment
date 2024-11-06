@@ -20,6 +20,7 @@ export type TChart = {
 const Chart: FC<TChart> = ({ onClick, data }) => {
   const reversed = [...data].reverse();
   const ids = reversed.map((el) => el.label);
+  const legendLabels = Object.keys(data[0]?.data);
 
   const max = useMemo(
     () =>
@@ -34,7 +35,7 @@ const Chart: FC<TChart> = ({ onClick, data }) => {
 
   return (
     <div className={styles.container}>
-      <Legend />
+      <Legend labels={legendLabels} />
 
       <div className={styles.chartContainer}>
         <div className={styles.chart}>
@@ -45,7 +46,7 @@ const Chart: FC<TChart> = ({ onClick, data }) => {
                 key={`bar-${el.label}-${index}`}
                 id={el.label}
                 max={max}
-                data={Object.values(el.data)}
+                data={Object.entries(el.data)}
               />
             ))}
         </div>
