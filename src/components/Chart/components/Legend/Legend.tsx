@@ -1,14 +1,27 @@
+// Types
+import { FC } from "react";
+
+// Utils
+import { stringToColor } from "../../../../utils/colors";
+
 // Styles
 import styles from "./legend.module.css";
 
-const Legend = () => (
+export type TLegendProps = {
+  labels: string[];
+};
+
+const Legend: FC<TLegendProps> = ({ labels }) => (
   <ul className={styles.legendList}>
-    <li className={styles.legendListItem}>
-      <div className={styles.identifier} /> <label>Total</label>
-    </li>
-    <li className={styles.legendListItem}>
-      <div className={styles.identifier} /> <label>Foreign</label>
-    </li>
+    {labels.map((label) => (
+      <li className={styles.legendListItem}>
+        <div
+          className={styles.identifier}
+          style={{ backgroundColor: stringToColor(label) }}
+        />
+        <label className={styles.label}>{label}</label>
+      </li>
+    ))}
   </ul>
 );
 
