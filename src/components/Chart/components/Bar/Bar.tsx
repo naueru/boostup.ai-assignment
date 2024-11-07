@@ -23,6 +23,7 @@ const Bar: FC<TBar> = ({ id, data, max, onClick }) => {
         const percent = (+current[1] / max) * 100;
         return (
           <div
+            title={`${current[1]}`}
             key={`chart_bar_${current[0]}_${idx}`}
             className={styles.bar}
             style={{
