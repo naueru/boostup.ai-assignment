@@ -17,3 +17,8 @@ export interface IYearState {
   "Total Population": number;
   Year: number;
 }
+
+export interface IState {
+  name: string;
+  id: string;
+}
