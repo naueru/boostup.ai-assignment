@@ -1,9 +1,20 @@
-import { INationYear, IYearState, TParsedNativity } from "../types/data";
+import {
+  INationYear,
+  IState,
+  IYearState,
+  TParsedNativity,
+} from "../types/data";
 
 export type IParsedElement = {
   label: number;
   data: { [key in TParsedNativity]: number };
 };
+
+export type IParsedStateItem = {
+  label: string;
+  value: string;
+};
+
 export type IParsedState = {
   state: string;
   total: number;
@@ -71,6 +82,14 @@ export const parseYear = (data: IYearState[] = []): IParsedState[] => {
 
     return acc;
   }, []);
+  return result;
+};
+
+export const parseStatesList = (data: IState[] = []): IParsedStateItem[] => {
+  const result = data.map((current: IState) => ({
+    label: current.name,
+    value: current.id,
+  }));
   return result;
 };
 
