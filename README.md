@@ -38,7 +38,7 @@ To get started with this project, follow these steps:
 2. Check node version (v22.2.0)
 
    ```bash
-   npm install
+   node -v
    ```
 
 4. Install dependencies:
