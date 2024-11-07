@@ -11,10 +11,11 @@ import Histogram from "../../components/Histogram/Histogram";
 import Header from "../../components/Header/Header";
 
 // Utils
-import { parseLocation } from "../../utils/parser";
+import { parseLocation, parseStatesList } from "../../utils/parser";
 
 // Styles
 import styles from "./dashboard.module.css";
+import AutoComplete from "../../components/AutoComplete/AutoComplete";
 
 const Dashboard: FC = () => {
   const { stateId } = useParams();
@@ -22,9 +23,12 @@ const Dashboard: FC = () => {
     "/data?drilldowns=Nation&measures=Total%20Population&Nativity=1,2",
     !!stateId
   );
-  const { isLoading: isStatePending, data: stateDate } = useCustomQuery(
+  const { isLoading: isStatePending, data: stateData } = useCustomQuery(
     `/data?&measure=Total%20Population&Nativity=1,2&Geography=${stateId}`,
     !stateId
+  );
+  const { isLoading: isStatesPending, data: statesData } = useCustomQuery(
+    `/searchLegacy/?limit=100&dimension=Geography&hierarchy=State`
   );
 
   const navigate = useNavigate();
@@ -36,7 +40,8 @@ const Dashboard: FC = () => {
   const stateHandlers: { [key: string]: Function } = { setFromYear, setToYear };
 
   const parsedNationData = parseLocation(data?.data);
-  const parsedStateData = parseLocation(stateDate?.data);
+  const parsedStateData = parseLocation(stateData?.data);
+  const parsedStatesData = parseStatesList(statesData?.results);
 
   const parsedData =
     !!stateId && !!parsedStateData ? parsedStateData : parsedNationData;
@@ -61,13 +66,31 @@ const Dashboard: FC = () => {
     }
   }, [years, fromYear, toYear]);
 
-  const isLoading = isPending || isStatePending;
+  const isLoading = isPending || isStatePending || isStatesPending;
+
+  const handleStateSelect = (id: string) => {
+    navigate(`/${id}`);
+  };
+
+  const handleStateRemove = () => {
+    navigate("/");
+  };
+
+  const selectedState =
+    parsedStatesData.find((state) => state.value === stateId)?.label || "";
 
   if (isLoading) return <LoadingCurtain />;
 
   return (
     <main className={styles.container}>
-      <Header label="US Demographic data" />
+      <Header label={`${selectedState || "US"} Demographic data`} />
+      <AutoComplete
+        placeholder="Search state..."
+        data={parsedStatesData}
+        value={selectedState}
+        onSelect={handleStateSelect}
+        onClear={handleStateRemove}
+      />
       <Histogram
         years={years}
         onChange={handleYearChange}
