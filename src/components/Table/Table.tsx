@@ -9,9 +9,15 @@ import styles from "./table.module.css";
 
 export interface TTableProps {
   data: IParsedState[];
+  onClick?: Function;
+  id?: string;
 }
 
-const Table: FC<TTableProps> = ({ data }) => {
+const Table: FC<TTableProps> = ({ data, onClick }) => {
+  const handleClick = (id: string) => {
+    if (onClick && id) onClick(id);
+  };
+
   return (
     <section className={styles.container}>
       <header className={styles.row}>
@@ -30,7 +36,11 @@ const Table: FC<TTableProps> = ({ data }) => {
               className={`${styles.row} ${isEven ? styles.dark : ""}`}
             >
               {Object.values(el).map((value, i) => (
-                <div key={`data_row_${idx}_cell_${i}`} className={styles.cell}>
+                <div
+                  key={`data_row_${idx}_cell_${i}`}
+                  className={styles.cell}
+                  onClick={i === 0 ? () => handleClick(`${value}`) : undefined}
+                >
                   {formatValue(value)}
                 </div>
               ))}
