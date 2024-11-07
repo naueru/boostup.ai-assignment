@@ -20,7 +20,7 @@ export type TChart = {
 const Chart: FC<TChart> = ({ onClick, data }) => {
   const reversed = [...data].reverse();
   const ids = reversed.map((el) => el.label);
-  const legendLabels = Object.keys(data[0]?.data);
+  const legendLabels = (data[0]?.data && Object.keys(data[0]?.data)) || [];
 
   const max = useMemo(
     () =>
