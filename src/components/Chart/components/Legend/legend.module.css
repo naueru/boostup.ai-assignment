@@ -1,9 +1,9 @@
 .legendList {
   align-items: flex-start;
   display: flex;
-  flex-direction: column;
   font-weight: 200;
   gap: 5px;
+  justify-content: space-around;
   list-style: none;
   padding: 0px;
 }
