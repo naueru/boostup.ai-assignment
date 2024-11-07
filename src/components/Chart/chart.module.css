@@ -1,34 +1,41 @@
 .container {
+  border-radius: 8px;
+  border: 1px solid lightgray;
+  box-shadow: 0px 4px 20px lightgray;
   display: flex;
-  flex: 1;
   flex-direction: row;
+  flex: 1;
   gap: 10px;
+  padding: 40px;
 }
 
-.chartContainer {
-  display: flex;
+.grid {
+  display: grid;
   flex: 1;
-  flex-direction: column;
-}
-
-.chartBarsRangeWrapper {
-  display: flex;
-  flex: 1;
-  gap: 20px;
-}
-
-.chartBarsYearsWrapper {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
   gap: 10px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto repeat(2, 30px);
 }
 
 .range {
   align-items: end;
   display: flex;
   flex-direction: column;
+  grid-column-end: 2;
+  grid-column-start: 1;
+  grid-row-end: 2;
+  grid-row-start: 1;
   justify-content: space-between;
+}
+
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  grid-column-end: 3;
+  grid-column-start: 2;
+  grid-row-end: 2;
+  grid-row-start: 1;
 }
 
 .chart {
@@ -40,4 +47,26 @@
   flex: 1;
   gap: 5px;
   height: 600px;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  grid-column-end: 3;
+  grid-column-start: 2;
+  grid-row-end: 3;
+  grid-row-start: 2;
+  justify-content: center;
+}
+
+.legends {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  grid-column-end: 3;
+  grid-column-start: 2;
+  grid-row-end: 4;
+  grid-row-start: 3;
+  justify-content: center;
 }
