@@ -2,14 +2,16 @@
 import { FC, useEffect, useState } from "react";
 
 // Hooks
+import { useNavigate } from "react-router-dom";
 import useCustomQuery from "../../hooks/useCustomQuery";
 
 // Components
 import LoadingCurtain from "../../components/LoadingCurtain/Loadingcurtain";
 import Histogram from "../../components/Histogram/Histogram";
+import Header from "../../components/Header/Header";
 
 // Utils
-import { parseNation } from "../../utils/parser";
+import { parseLocation } from "../../utils/parser";
 
 // Styles
 import styles from "./dashboard.module.css";
@@ -19,13 +21,15 @@ const Dashboard: FC = () => {
     "/data?drilldowns=Nation&measures=Total%20Population&Nativity=1,2"
   );
 
+  const navigate = useNavigate();
+
   const [fromYear, setFromYear] = useState<number>();
 
   const [toYear, setToYear] = useState<number>();
 
   const stateHandlers: { [key: string]: Function } = { setFromYear, setToYear };
 
-  const parsedData = parseNation(data?.data);
+  const parsedData = parseLocation(data?.data);
   const years = [...parsedData].reverse().map((year) => year.label);
 
   const filteredData = parsedData.filter((c) =>
@@ -50,16 +54,14 @@ const Dashboard: FC = () => {
 
   return (
     <main className={styles.container}>
-      <header>
-        <h2 className={styles.title}>US Demographic data</h2>
-      </header>
+      <Header label="US Demographic data" />
       <Histogram
         years={years}
         onChange={handleYearChange}
         defaultValues={{ fromYear, toYear }}
         data={filteredData}
         onClick={(id: string | number) => {
-          console.log(id);
+          navigate(`year/${id}`);
         }}
       />
     </main>
