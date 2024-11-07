@@ -19,10 +19,11 @@ export type TBar = {
 const Bar: FC<TBar> = ({ id, data, max, onClick }) => {
   return (
     <div className={styles.barsContainer} onClick={() => onClick(id)}>
-      {data.map((current) => {
+      {data.map((current, idx) => {
         const percent = (+current[1] / max) * 100;
         return (
           <div
+            key={`chart_bar_${current[0]}_${idx}`}
             className={styles.bar}
             style={{
               height: `${percent}%`,
