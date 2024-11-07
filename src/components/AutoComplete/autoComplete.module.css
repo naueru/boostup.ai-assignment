@@ -1,0 +1,65 @@
+.container {
+  border-radius: 30px;
+  border: 1px solid gray;
+  display: flex;
+  gap: 4px;
+  height: 30px;
+  justify-content: center;
+  max-width: 300px;
+  min-height: 30px;
+  padding: 4px;
+}
+
+.icon {
+  align-items: center;
+  background-position: center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+
+.search {
+  background-image: url("../../assets/search.svg");
+}
+
+.trash {
+  background-image: url("../../assets/trash.svg");
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.input {
+  border: none;
+  min-height: 30px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.suggestionsContainer {
+  background-color: white;
+  border: 1px solid gray;
+  display: none;
+  flex-direction: column;
+  margin-top: 2px;
+  max-height: 90px;
+  position: relative;
+  width: 100%;
+}
+
+.suggestionsList {
+  overflow-y: auto;
+}
+
+.input:focus + .suggestionsContainer {
+  display: flex;
+}
