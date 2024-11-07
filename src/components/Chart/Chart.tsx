@@ -35,23 +35,30 @@ const Chart: FC<TChart> = ({ onClick, data }) => {
 
   return (
     <div className={styles.container}>
-      <Legend labels={legendLabels} />
-
       <div className={styles.chartContainer}>
-        <div className={styles.chart}>
-          {reversed &&
-            reversed.map((el, index) => (
-              <Bar
-                onClick={onClick}
-                key={`bar-${el.label}-${index}`}
-                id={el.label}
-                max={max}
-                data={Object.entries(el.data)}
-              />
-            ))}
+        <div className={styles.chartBarsRangeWrapper}>
+          <div className={styles.range}>
+            <label>{max}</label>
+            <label>0</label>
+          </div>
+          <div className={styles.chartBarsYearsWrapper}>
+            <div className={styles.chart}>
+              {reversed &&
+                reversed.map((el, index) => (
+                  <Bar
+                    onClick={onClick}
+                    key={`bar-${el.label}-${index}`}
+                    id={el.label}
+                    max={max}
+                    data={Object.entries(el.data)}
+                  />
+                ))}
+            </div>
+            <Labels data={ids} />
+          </div>
         </div>
 
-        <Labels data={ids} />
+        <Legend labels={legendLabels} />
       </div>
     </div>
   );
