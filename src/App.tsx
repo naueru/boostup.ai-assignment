@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/year",
+    path: "/year/:year",
     element: <Detail />,
   },
 ]);
