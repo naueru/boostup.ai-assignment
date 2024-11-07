@@ -1,4 +1,8 @@
 .container {
+  border-right: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   min-width: 250px;
   padding: 16px;
 }

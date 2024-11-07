@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from "react";
 
 // Hooks
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useCustomQuery from "../../hooks/useCustomQuery";
 
 // Components
@@ -11,14 +11,24 @@ import Histogram from "../../components/Histogram/Histogram";
 import Header from "../../components/Header/Header";
 
 // Utils
-import { parseLocation } from "../../utils/parser";
+import { parseLocation, parseStatesList } from "../../utils/parser";
 
 // Styles
 import styles from "./dashboard.module.css";
+import AutoComplete from "../../components/AutoComplete/AutoComplete";
 
 const Dashboard: FC = () => {
-  const { isPending, data } = useCustomQuery(
-    "/data?drilldowns=Nation&measures=Total%20Population&Nativity=1,2"
+  const { stateId } = useParams();
+  const { isLoading: isPending, data } = useCustomQuery(
+    "/data?drilldowns=Nation&measures=Total%20Population&Nativity=1,2",
+    !!stateId
+  );
+  const { isLoading: isStatePending, data: stateData } = useCustomQuery(
+    `/data?&measure=Total%20Population&Nativity=1,2&Geography=${stateId}`,
+    !stateId
+  );
+  const { isLoading: isStatesPending, data: statesData } = useCustomQuery(
+    `/searchLegacy/?limit=100&dimension=Geography&hierarchy=State`
   );
 
   const navigate = useNavigate();
@@ -29,7 +39,13 @@ const Dashboard: FC = () => {
 
   const stateHandlers: { [key: string]: Function } = { setFromYear, setToYear };
 
-  const parsedData = parseLocation(data?.data);
+  const parsedNationData = parseLocation(data?.data);
+  const parsedStateData = parseLocation(stateData?.data);
+  const parsedStatesData = parseStatesList(statesData?.results);
+
+  const parsedData =
+    !!stateId && !!parsedStateData ? parsedStateData : parsedNationData;
+
   const years = [...parsedData].reverse().map((year) => year.label);
 
   const filteredData = parsedData.filter((c) =>
@@ -50,18 +66,38 @@ const Dashboard: FC = () => {
     }
   }, [years, fromYear, toYear]);
 
-  if (isPending) return <LoadingCurtain />;
+  const isLoading = isPending || isStatePending || isStatesPending;
+
+  const handleStateSelect = (id: string) => {
+    navigate(`/${id}`);
+  };
+
+  const handleStateRemove = () => {
+    navigate("/");
+  };
+
+  const selectedState =
+    parsedStatesData.find((state) => state.value === stateId)?.label || "";
+
+  if (isLoading) return <LoadingCurtain />;
 
   return (
     <main className={styles.container}>
-      <Header label="US Demographic data" />
+      <Header label={`${selectedState || "US"} Demographic data`} />
+      <AutoComplete
+        placeholder="Search state..."
+        data={parsedStatesData}
+        value={selectedState}
+        onSelect={handleStateSelect}
+        onClear={handleStateRemove}
+      />
       <Histogram
         years={years}
         onChange={handleYearChange}
         defaultValues={{ fromYear, toYear }}
         data={filteredData}
         onClick={(id: string | number) => {
-          navigate(`year/${id}`);
+          navigate(`/year/${id}`);
         }}
       />
     </main>

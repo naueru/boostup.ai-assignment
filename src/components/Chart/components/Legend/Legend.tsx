@@ -13,8 +13,8 @@ export type TLegendProps = {
 
 const Legend: FC<TLegendProps> = ({ labels }) => (
   <ul className={styles.legendList}>
-    {labels.map((label) => (
-      <li className={styles.legendListItem}>
+    {labels.map((label, idx) => (
+      <li className={styles.legendListItem} key={`legend_${label}_${idx}`}>
         <div
           className={styles.identifier}
           style={{ backgroundColor: stringToColor(label) }}

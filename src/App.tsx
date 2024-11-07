@@ -14,7 +14,7 @@ import "./App.css";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/:stateId?",
     element: <Dashboard />,
     errorElement: <Error />,
   },

@@ -1,9 +1,12 @@
 // Types
 import { FC } from "react";
 
+// Components
+import Label from "../Label/Label";
+import Header from "../Header/Header";
+
 // Styles
 import styles from "./filters.module.css";
-import Label from "../Label/Label";
 
 export type TFiltersProps = {
   years: number[];
@@ -18,6 +21,7 @@ const Filters: FC<TFiltersProps> = ({ years, onChange, defaultValues }) => {
 
   return (
     <aside className={styles.container}>
+      <Header label="Select year range" />
       <section className={styles.yearRangeFilter}>
         <Label label="From" />
         <select
