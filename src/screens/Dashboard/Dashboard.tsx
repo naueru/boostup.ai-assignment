@@ -3,52 +3,40 @@ import { FC, useEffect, useState } from "react";
 
 // Hooks
 import { useNavigate, useParams } from "react-router-dom";
-import useCustomQuery from "../../hooks/useCustomQuery";
+import useFetchNation from "../../hooks/useFetchNation";
+import useFetchStates from "../../hooks/useFetchStates";
+import useFetchState from "../../hooks/useFetchState";
 
 // Components
 import LoadingCurtain from "../../components/LoadingCurtain/Loadingcurtain";
+import AutoComplete from "../../components/AutoComplete/AutoComplete";
 import Histogram from "../../components/Histogram/Histogram";
 import Header from "../../components/Header/Header";
 
-// Utils
-import { parseLocation, parseStatesList } from "../../utils/parser";
-
 // Styles
 import styles from "./dashboard.module.css";
-import AutoComplete from "../../components/AutoComplete/AutoComplete";
 
 const Dashboard: FC = () => {
   const { stateId } = useParams();
-  const { isLoading: isPending, data } = useCustomQuery(
-    "/data?drilldowns=Nation&measures=Total%20Population&Nativity=1,2",
-    !!stateId
-  );
-  const { isLoading: isStatePending, data: stateData } = useCustomQuery(
-    `/data?&measure=Total%20Population&Nativity=1,2&Geography=${stateId}`,
+  const { isLoading: isPending, data: nationData } = useFetchNation(!!stateId);
+  const { isLoading: isStatePending, data: stateData } = useFetchState(
+    stateId,
     !stateId
   );
-  const { isLoading: isStatesPending, data: statesData } = useCustomQuery(
-    `/searchLegacy/?limit=100&dimension=Geography&hierarchy=State`
-  );
+  const { isLoading: isStatesPending, data: statesList } = useFetchStates();
 
   const navigate = useNavigate();
 
   const [fromYear, setFromYear] = useState<number>();
-
   const [toYear, setToYear] = useState<number>();
 
   const stateHandlers: { [key: string]: Function } = { setFromYear, setToYear };
 
-  const parsedNationData = parseLocation(data?.data);
-  const parsedStateData = parseLocation(stateData?.data);
-  const parsedStatesData = parseStatesList(statesData?.results);
+  const data = !!stateId && !!stateData ? stateData : nationData;
 
-  const parsedData =
-    !!stateId && !!parsedStateData ? parsedStateData : parsedNationData;
+  const years = [...data].reverse().map((year) => year.label);
 
-  const years = [...parsedData].reverse().map((year) => year.label);
-
-  const filteredData = parsedData.filter((c) =>
+  const filteredData = data.filter((c) =>
     fromYear && toYear ? c.label >= fromYear && c.label <= toYear : true
   );
 
@@ -77,7 +65,7 @@ const Dashboard: FC = () => {
   };
 
   const selectedState =
-    parsedStatesData.find((state) => state.value === stateId)?.label || "";
+    statesList.find((state) => state.value === stateId)?.label || "";
 
   if (isLoading) return <LoadingCurtain />;
 
@@ -86,7 +74,7 @@ const Dashboard: FC = () => {
       <Header label={`${selectedState || "US"} Demographic data`} />
       <AutoComplete
         placeholder="Search state..."
-        data={parsedStatesData}
+        data={statesList}
         value={selectedState}
         onSelect={handleStateSelect}
         onClear={handleStateRemove}
