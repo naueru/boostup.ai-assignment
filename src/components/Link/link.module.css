@@ -1,6 +1,6 @@
 .container {
-  border-radius: 4px;
-  box-shadow: 0px 4px 4px lightgray;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
   font-weight: bold;
   padding: 4px 8px;
   text-decoration: none;
@@ -9,22 +9,22 @@
 .link,
 .link:visited,
 .link:active {
-  color: #ef6145;
+  color: var(--accent-color);
 }
 
 .link:hover {
-  color: #ef6145c4;
+  color: var(--accent-color-75);
   cursor: pointer;
 }
 
 .button,
 .button:visited,
 .button:active {
-  background-color: #ef6145;
-  color: white;
+  background-color: var(--accent-color);
+  color: var(--secondary-text-color);
 }
 
 .button:hover {
-  background-color: #ef6145c4;
+  background-color: var(--accent-color-75);
   cursor: pointer;
 }
