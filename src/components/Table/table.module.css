@@ -1,18 +1,19 @@
 .container {
-  border: 1px solid gray;
-  box-shadow: 0px 4px 20px lightgray;
+  border-radius: var(--border-radius);
+  border: var(--primary-border);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  max-width: 100%;
   flex: 1;
-  overflow-y: auto;
+  max-width: var(--screens-max-width);
+  overflow: hidden;
 }
 
 .list {
-  border: 1px solid gray;
   display: flex;
   flex-direction: column;
   max-width: 100%;
+  overflow-y: auto;
 }
 
 .label {
@@ -25,12 +26,20 @@
   text-transform: capitalize;
 }
 
+.header {
+  border-bottom: var(--primary-border);
+  display: flex;
+  flex: 1;
+  padding-right: 18px;
+}
+
 .row {
   display: flex;
   flex: 1;
 }
+
 .row.dark {
-  background-color: lightgray;
+  background-color: var(--background-color-alt);
 }
 
 .cell {
@@ -46,5 +55,5 @@
 }
 
 .cell:first-child:hover {
-  color: #ef6145;
+  color: var(--accent-color);
 }
