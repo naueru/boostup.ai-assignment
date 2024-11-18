@@ -43,15 +43,21 @@ const AutoComplete: FC<TAutoCompleteProps> = ({
 
   return (
     <div className={styles.container}>
-      <div className={`${styles.icon} ${styles.search}`} />
       <div className={styles.content}>
+        <div className={`${styles.icon} ${styles.search}`} />
         <input
           placeholder={placeholder}
           value={filter}
           className={styles.input}
           onChange={(e) => setFilter(e.target.value)}
         />
-        <div className={styles.suggestionsContainer}>
+        <div
+          className={`${styles.icon} ${styles.trash}`}
+          onClick={handleReset}
+        />
+      </div>
+      <div className={styles.suggestionsContainer}>
+        <div className={styles.suggestionsWrapper}>
           <ul className={styles.suggestionsList}>
             {filteredData.map((item: TItemData, index) => (
               <Item
@@ -63,7 +69,6 @@ const AutoComplete: FC<TAutoCompleteProps> = ({
           </ul>
         </div>
       </div>
-      <div className={`${styles.icon} ${styles.trash}`} onClick={handleReset} />
     </div>
   );
 };
