@@ -1,0 +1,29 @@
+.container {
+  border-bottom: var(--secondary-border);
+  box-sizing: border-box;
+  color: var(--primary-text-color);
+  cursor: pointer;
+  height: 31px;
+  max-height: 31px;
+  min-height: 31px;
+  overflow-x: hidden;
+  padding: 4px 8px;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.container:not(.disabled):hover {
+  background-color: var(--background-hover-color);
+}
+
+.disabled {
+  cursor: default;
+  opacity: 30%;
+  pointer-events: none;
+}
+
+.container:last-child {
+  border-bottom: none;
+}
