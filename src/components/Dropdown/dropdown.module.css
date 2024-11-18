@@ -1,0 +1,67 @@
+.container {
+  border-radius: var(--border-radius);
+  border: var(--primary-border);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 32px;
+  max-width: 300px;
+  min-height: 32px;
+  padding: 0 4px;
+  width: 100%;
+}
+
+.icon {
+  align-items: center;
+  background-position: center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  opacity: 50%;
+  width: 30px;
+  background-image: url("../../assets/chevron.svg");
+  cursor: pointer;
+  transform: rotate(180deg);
+  transition: var(--transition);
+}
+
+.open {
+  transform: rotate(0);
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.optionsContainer {
+  transition: var(--transition);
+  background-color: var(--white);
+  border: var(--primary-border);
+  border-radius: var(--border-radius);
+  flex-direction: column;
+  margin-left: -5px;
+  position: relative;
+  width: calc(100% + 8px);
+  max-width: calc(100% + 8px);
+  z-index: 100;
+  max-height: 90px;
+  box-shadow: var(--shadow);
+  display: flex;
+}
+
+.optionsWrapper {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.optionsList {
+  overflow-y: auto;
+}
