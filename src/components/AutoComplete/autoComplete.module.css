@@ -1,20 +1,21 @@
 .container {
-  border-radius: 30px;
-  border: 1px solid gray;
+  border-radius: var(--border-radius);
+  border: var(--primary-border);
+  box-sizing: border-box;
   display: flex;
-  gap: 4px;
-  height: 30px;
-  justify-content: center;
+  flex-direction: column;
+  height: 32px;
   max-width: 300px;
-  min-height: 30px;
-  padding: 4px;
+  min-height: 32px;
+  padding: 0 4px;
+  width: 100%;
 }
 
 .icon {
   align-items: center;
   background-position: center;
-  background-size: 20px;
   background-repeat: no-repeat;
+  background-size: 20px;
   display: flex;
   height: 30px;
   justify-content: center;
@@ -33,13 +34,16 @@
 
 .content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex: 1;
 }
 
 .input {
   border: none;
+  display: flex;
+  flex: 1;
   min-height: 30px;
+  padding: 0;
 }
 
 .input:focus {
@@ -47,21 +51,31 @@
 }
 
 .suggestionsContainer {
-  background-color: white;
-  border: 1px solid gray;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  border: var(--primary-border);
+  box-shadow: var(--shadow);
   display: none;
   flex-direction: column;
-  margin-top: 2px;
+  margin-left: -5px;
   max-height: 90px;
+  max-width: calc(100% + 8px);
   position: relative;
-  width: 100%;
+  width: calc(100% + 8px);
   z-index: 100;
+}
+
+.suggestionsWrapper {
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .suggestionsList {
   overflow-y: auto;
 }
 
-.input:focus + .suggestionsContainer {
+.content:focus-within + .suggestionsContainer {
   display: flex;
 }
