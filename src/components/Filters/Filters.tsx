@@ -3,7 +3,8 @@ import { FC } from "react";
 
 // Components
 import Label from "../Label/Label";
-import Header from "../Header/Header";
+import Title from "../Title/Title";
+import Dropdown from "../Dropdown/Dropdown";
 
 // Styles
 import styles from "./filters.module.css";
@@ -21,38 +22,30 @@ const Filters: FC<TFiltersProps> = ({ years, onChange, defaultValues }) => {
 
   return (
     <aside className={styles.container}>
-      <Header label="Select year range" />
+      <Title label="Select year range" />
       <section className={styles.yearRangeFilter}>
         <Label label="From" />
-        <select
-          onChange={(e) => handleChange("fromYear", e.target.value)}
-          value={defaultValues.fromYear}
-        >
-          {years.map((year) => (
-            <option
-              value={year}
-              key={`fromYear_option_${year}`}
-              disabled={year > +(defaultValues.toYear || 0)}
-            >
-              {year}
-            </option>
-          ))}
-        </select>
+        <Dropdown
+          value={`${defaultValues.fromYear}`}
+          data={years.map((year) => ({
+            label: `${year}`,
+            value: `${year}`,
+            disabled: year > +(defaultValues.toYear || 0),
+          }))}
+          onSelect={(value: string) => handleChange("fromYear", value)}
+          name="fromYear"
+        />
         <Label label="To" />
-        <select
-          onChange={(e) => handleChange("toYear", e.target.value)}
-          value={defaultValues.toYear}
-        >
-          {years.map((year) => (
-            <option
-              value={year}
-              key={`toYear_option_${year}`}
-              disabled={year < +(defaultValues.fromYear || 0)}
-            >
-              {year}
-            </option>
-          ))}
-        </select>
+        <Dropdown
+          value={`${defaultValues.toYear}`}
+          data={years.map((year) => ({
+            label: `${year}`,
+            value: `${year}`,
+            disabled: year < +(defaultValues.fromYear || 0),
+          }))}
+          onSelect={(value: string) => handleChange("toYear", value)}
+          name="toYear"
+        />
       </section>
     </aside>
   );

@@ -16,7 +16,7 @@
 }
 
 .identifier {
-  border: 1px solid rgb(186, 186, 186);
+  border: var(--secondary-border);
   height: 8px;
   width: 8px;
 }

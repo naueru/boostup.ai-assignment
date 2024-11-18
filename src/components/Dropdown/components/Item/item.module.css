@@ -18,6 +18,12 @@
   background-color: var(--background-hover-color);
 }
 
+.disabled {
+  cursor: default;
+  opacity: 30%;
+  pointer-events: none;
+}
+
 .container:last-child {
   border-bottom: none;
 }

@@ -8,6 +8,7 @@ import Header from "../../components/Header/Header";
 import Link from "../../components/Link/Link";
 import LoadingCurtain from "../../components/LoadingCurtain/Loadingcurtain";
 import Table from "../../components/Table/Table";
+import Title from "../../components/Title/Title";
 
 // Styles
 import styles from "./detail.module.css";
@@ -28,11 +29,12 @@ const Detail = () => {
 
   return (
     <main className={styles.container}>
-      <Header label={`Demographic data for year ${year}`} />
-      <Link href="/" label="Home" type="button" />
+      <Header label="US Demographic data" />
+      <Title label={`Demographic data for year ${year}`} />
       <div className={styles.tableWrapper}>
         <Table data={data} onClick={handleClick} />
       </div>
+      <Link href="/" label="BACK" type="button" />
     </main>
   );
 };

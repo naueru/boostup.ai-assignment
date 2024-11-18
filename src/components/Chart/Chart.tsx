@@ -5,6 +5,7 @@ import { FC, useMemo } from "react";
 import Bar from "./components/Bar/Bar";
 import Labels from "./components/Labels/Labels";
 import Legend from "./components/Legend/Legend";
+import Title from "../Title/Title";
 
 // Utils
 import { IParsedElement } from "../../utils/parser";
@@ -15,9 +16,10 @@ import styles from "./chart.module.css";
 export type TChart = {
   data: IParsedElement[];
   onClick: (id: number | string) => void;
+  label: string;
 };
 
-const Chart: FC<TChart> = ({ onClick, data }) => {
+const Chart: FC<TChart> = ({ onClick, data, label }) => {
   const reversed = [...data].reverse();
   const ids = reversed.map((el) => el.label);
   const legendLabels = (data[0]?.data && Object.keys(data[0]?.data)) || [];
@@ -35,6 +37,7 @@ const Chart: FC<TChart> = ({ onClick, data }) => {
 
   return (
     <div className={styles.container}>
+      <Title label={label} />
       <div className={styles.grid}>
         <div className={styles.range}>
           <label>{max}</label>

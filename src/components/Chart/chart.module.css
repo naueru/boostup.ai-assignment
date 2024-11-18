@@ -1,12 +1,13 @@
 .container {
-  border-radius: 8px;
-  border: 1px solid lightgray;
-  box-shadow: 0px 4px 20px lightgray;
+  border: var(--secondary-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
   display: flex;
-  flex-direction: row;
   flex: 1;
-  gap: 10px;
-  padding: 40px;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 40px 40px;
+  text-align: center;
 }
 
 .grid {
@@ -40,9 +41,9 @@
 
 .chart {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABACAQAAABxGNXLAAABJWlDQ1BJQ0MgcHJvZmlsZQAAKJGdkD1Lw1AUhp/WT/wAwY9BHDK4ScHFTC5qMTgUahvB6pTetFhMYkhSiv/Af6I/poMg+BucFZx9b3RwMIsXDu/D4Zz3vfdC3YlMnM/uQ5wUmdc56l32rpyFN5aZY409NgOTp63uqU/l+XylZvWlYb2q5/488+EgN9KpKjFpVkDtUOxOitSyio1bv3MifhA7YZyE4ifxbhiHlu1uJ47G5sfT3mZlkFx0bV+1g8cZLdo49BkzIqKgIU3UaeJyIPXICLgnx0gjBupNNFNwI8rl5HEs8kW6TUXedpnXVkpfHiN52YQ7YnnaPOz/fq99nJebta1pGmRB2ZpR1YdDeH+E1R6sP8PSdUXW4u+3Vcy45cw/3/gFCG1QdVXFb+0AAAACYktHRAD/h4/MvwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+gLBRAtNoV7nmoAAAAOSURBVAjXY2D4zzCUAQC+AgEAsTsvjAAAAABJRU5ErkJggg==");
-  border-right-width: 0px;
-  border-top-width: 0px;
-  border: 1px solid rgb(186, 186, 186);
+  border-bottom: var(--primary-border);
+  border-left: var(--primary-border);
+  border-right: var(--primary-border);
   display: flex;
   flex: 1;
   gap: 5px;

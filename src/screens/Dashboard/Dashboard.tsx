@@ -71,7 +71,7 @@ const Dashboard: FC = () => {
 
   return (
     <main className={styles.container}>
-      <Header label={`${selectedState || "US"} Demographic data`} />
+      <Header label={"US Demographic data"} />
       <AutoComplete
         placeholder="Search state..."
         data={statesList}
@@ -80,12 +80,13 @@ const Dashboard: FC = () => {
         onClear={handleStateRemove}
       />
       <Histogram
+        label={`${selectedState || "US"} Demographic data`}
         years={years}
         onChange={handleYearChange}
         defaultValues={{ fromYear, toYear }}
         data={filteredData}
         onClick={(id: string | number) => {
-          navigate(`/year/${id}`);
+          !selectedState && navigate(`/year/${id}`);
         }}
       />
     </main>

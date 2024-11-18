@@ -14,68 +14,54 @@
 .icon {
   align-items: center;
   background-position: center;
-  background-repeat: no-repeat;
   background-size: 20px;
+  background-repeat: no-repeat;
   display: flex;
   height: 30px;
   justify-content: center;
   opacity: 50%;
   width: 30px;
-}
-
-.search {
-  background-image: url("../../assets/search.svg");
-}
-
-.trash {
-  background-image: url("../../assets/trash.svg");
+  background-image: url("../../assets/chevron.svg");
   cursor: pointer;
+  transform: rotate(180deg);
+  transition: var(--transition);
+}
+
+.open {
+  transform: rotate(0);
 }
 
 .content {
   display: flex;
   flex-direction: row;
   flex: 1;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.input {
-  border: none;
-  display: flex;
-  flex: 1;
-  min-height: 30px;
-  padding: 0;
-}
-
-.input:focus {
-  outline: none;
-}
-
-.suggestionsContainer {
+.optionsContainer {
+  transition: var(--transition);
   background-color: var(--white);
-  border-radius: var(--border-radius);
   border: var(--primary-border);
-  box-shadow: var(--shadow);
-  display: none;
+  border-radius: var(--border-radius);
   flex-direction: column;
   margin-left: -5px;
-  max-height: 90px;
-  max-width: calc(100% + 8px);
   position: relative;
   width: calc(100% + 8px);
+  max-width: calc(100% + 8px);
   z-index: 100;
+  max-height: 90px;
+  box-shadow: var(--shadow);
+  display: flex;
 }
 
-.suggestionsWrapper {
+.optionsWrapper {
   border-radius: var(--border-radius);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
-.suggestionsList {
+.optionsList {
   overflow-y: auto;
-}
-
-.content:focus-within + .suggestionsContainer {
-  display: flex;
 }
