@@ -3,10 +3,10 @@
   font-weight: bold;
 }
 .primary {
-  background-color: #ef6145;
-  color: white;
+  background-color: var(--accent-color);
+  color: var(--secondary-text-color);
 }
 .secondary {
-  background-color: white;
-  color: #ef6145;
+  background-color: var(--white);
+  color: var(--accent-color);
 }
