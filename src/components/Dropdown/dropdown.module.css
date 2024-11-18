@@ -1,6 +1,6 @@
 .container {
   border-radius: var(--border-radius);
-  border: var(--primary-border);
+  border: var(--secondary-border);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
 .icon {
   align-items: center;
   background-position: center;
-  background-size: 20px;
+  background-size: 15px;
   background-repeat: no-repeat;
   display: flex;
   height: 30px;
@@ -42,7 +42,7 @@
 .optionsContainer {
   transition: var(--transition);
   background-color: var(--white);
-  border: var(--primary-border);
+  border: var(--secondary-border);
   border-radius: var(--border-radius);
   flex-direction: column;
   margin-left: -5px;
