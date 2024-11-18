@@ -8,3 +8,10 @@
   overflow: hidden;
   padding: 5px;
 }
+
+.img {
+  background-image: url("../../assets/logo.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
