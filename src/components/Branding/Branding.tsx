@@ -19,11 +19,9 @@ const Branding: FC<TBrandingProps> = ({ size = "m" }) => {
   return (
     <Link to="/">
       <div className={styles.container}>
-        <img
-          src="logo.svg"
-          alt="uS Demographic Logo"
-          height={dimension}
-          width={dimension}
+        <div
+          className={styles.img}
+          style={{ width: dimension, height: dimension }}
         />
       </div>
     </Link>
