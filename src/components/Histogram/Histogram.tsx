@@ -15,6 +15,7 @@ export type THistogramProps = {
   onChange: (name: string, value: string) => void;
   data: IParsedElement[];
   onClick: (id: number | string) => void;
+  label: string;
 };
 
 const Histogram: FC<THistogramProps> = ({
@@ -23,6 +24,7 @@ const Histogram: FC<THistogramProps> = ({
   defaultValues,
   data,
   onClick,
+  label,
 }) => {
   return (
     <section className={styles.chartContainer}>
@@ -31,7 +33,7 @@ const Histogram: FC<THistogramProps> = ({
         onChange={onChange}
         defaultValues={defaultValues}
       />
-      <Chart data={data} onClick={onClick} />
+      <Chart data={data} onClick={onClick} label={label} />
     </section>
   );
 };
