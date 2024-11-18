@@ -20,7 +20,7 @@ const Table: FC<TTableProps> = ({ data, onClick }) => {
 
   return (
     <section className={styles.container}>
-      <header className={styles.row}>
+      <header className={styles.header}>
         {Object.keys(data[0]).map((label, i) => (
           <div key={`data_header_label_${i}`} className={styles.label}>
             {label}
