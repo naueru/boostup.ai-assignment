@@ -1,7 +1,7 @@
 // Types
 import { FC, useEffect, useState } from "react";
 
-// Component
+// Components
 import Item, { TItemData } from "./components/Item/Item";
 import Label from "../Label/Label";
 
@@ -34,7 +34,7 @@ const Dropdown: FC<TDropdownProps> = ({ value = "", data, onSelect, name }) => {
       onMouseLeave={() => setVisible(false)}
     >
       <div className={styles.content}>
-        <Label label={val} />
+        <Label label={val} alt />
         <div className={`${styles.icon} ${visible ? styles.open : ""}`} />
       </div>
       {visible ? (

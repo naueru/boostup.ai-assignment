@@ -1,10 +1,10 @@
 .container {
-  border: var(--secondary-border);
   border-radius: var(--border-radius);
+  border: var(--secondary-border);
   box-shadow: var(--shadow);
   display: flex;
-  flex: 1;
   flex-direction: column;
+  flex: 1;
   gap: 20px;
   padding: 20px 40px 40px;
   text-align: center;

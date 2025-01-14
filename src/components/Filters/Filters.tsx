@@ -2,9 +2,10 @@
 import { FC } from "react";
 
 // Components
-import Label from "../Label/Label";
-import Title from "../Title/Title";
 import Dropdown from "../Dropdown/Dropdown";
+import Button from "../Button/Button";
+import Title from "../Title/Title";
+import Label from "../Label/Label";
 
 // Styles
 import styles from "./filters.module.css";
@@ -13,9 +14,19 @@ export type TFiltersProps = {
   years: number[];
   defaultValues: { [key: string]: number | string | undefined };
   onChange: (name: string, value: string) => void;
+  onGraphSelect: (value: number) => {};
+  selectedGraphic: number;
 };
 
-const Filters: FC<TFiltersProps> = ({ years, onChange, defaultValues }) => {
+const graphicStyles = [styles.hybrid, styles.bars];
+
+const Filters: FC<TFiltersProps> = ({
+  years,
+  onChange,
+  defaultValues,
+  onGraphSelect,
+  selectedGraphic,
+}) => {
   const handleChange = (name: string, value: string) => {
     onChange(name, value);
   };
@@ -46,6 +57,31 @@ const Filters: FC<TFiltersProps> = ({ years, onChange, defaultValues }) => {
           onSelect={(value: string) => handleChange("toYear", value)}
           name="toYear"
         />
+        <div>
+          <Label label="Select graphic type" />
+          <div>
+            {graphicStyles.map((graphic, index) => (
+              <Button
+                onClick={() => onGraphSelect(index)}
+                type="secondary"
+                key={graphic}
+              >
+                <div className={styles.iconContainer}>
+                  <div
+                    className={`${styles.icon} ${graphic} ${
+                      selectedGraphic === index ? styles.selected : ""
+                    }`}
+                  />
+                  <span
+                    className={`${styles.selectedIndicator} ${
+                      selectedGraphic === index ? styles.selected : ""
+                    }`}
+                  />
+                </div>
+              </Button>
+            ))}
+          </div>
+        </div>
       </section>
     </aside>
   );

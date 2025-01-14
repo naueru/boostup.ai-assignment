@@ -14,3 +14,42 @@
   flex-direction: column;
   gap: 12px;
 }
+
+.iconContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  background-size: contain;
+  height: 80px;
+  opacity: 60%;
+  width: 80px;
+}
+
+.icon.selected {
+  opacity: 100%;
+}
+
+.hybrid {
+  background-image: url("../../assets/chart-h-icon.svg");
+}
+
+.bars {
+  background-image: url("../../assets/chart-b-icon.svg");
+}
+
+.selectedIndicator {
+  background-color: var(--primary-text-color);
+  border-radius: 4px;
+  display: flex;
+  height: 4px;
+  margin-top: 4px;
+  transition: all ease-in-out 0.3s;
+  width: 0%;
+}
+
+.selectedIndicator.selected {
+  width: 80%;
+}

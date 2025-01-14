@@ -1,16 +1,12 @@
 .container {
   align-items: center;
-  background-color: var(--white);
-  border-radius: 50%;
-  border: var(--primary-border-bold);
   display: flex;
   justify-content: center;
-  overflow: hidden;
   padding: 5px;
 }
 
 .img {
-  background-image: url("../../assets/logo.svg");
+  background-image: url("../../assets/header-logo-alt.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

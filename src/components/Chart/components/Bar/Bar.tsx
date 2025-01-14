@@ -1,34 +1,44 @@
 // Types
 import { FC } from "react";
 
-// Utils
-import { stringToColor } from "../../../../utils/colors";
-
 // Styles
 import styles from "./bar.module.css";
 
-export type TBar = {
+export interface IBarData {
+  value: number;
+  color?: string;
+  label?: string;
+}
+
+export type TBars = {
   id: number | string;
   native?: number;
   foreignborn?: number;
   max: number;
-  data: Array<Array<string | number>>;
   onClick: (year: number | string) => void;
+  values: IBarData[];
 };
 
-const Bar: FC<TBar> = ({ id, data, max, onClick }) => {
+const Bars: FC<TBars> = ({ id, max, onClick, values }) => {
   return (
     <div className={styles.barsContainer} onClick={() => onClick(id)}>
-      {data.map((current, idx) => {
-        const percent = (+current[1] / max) * 100;
+      {values.map((val, index) => {
+        const { value, label, color } = val;
+        const percent = (+value / max) * 100;
+        const lbl = `${label || value}`;
         return (
           <div
-            title={`${current[1]}`}
-            key={`chart_bar_${current[0]}_${idx}`}
+            key={`bar-${lbl}-${index}`}
+            title={lbl}
             className={styles.bar}
             style={{
               height: `${percent}%`,
-              backgroundColor: stringToColor(`${current[0]}`),
+              backgroundColor: color,
+              ...(color
+                ? {
+                    backgroundImage: "none",
+                  }
+                : {}),
             }}
           />
         );
@@ -37,4 +47,4 @@ const Bar: FC<TBar> = ({ id, data, max, onClick }) => {
   );
 };
 
-export default Bar;
+export default Bars;

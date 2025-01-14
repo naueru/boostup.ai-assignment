@@ -9,9 +9,7 @@ import useFetchState from "../../hooks/useFetchState";
 
 // Components
 import LoadingCurtain from "../../components/LoadingCurtain/Loadingcurtain";
-import AutoComplete from "../../components/AutoComplete/AutoComplete";
 import Histogram from "../../components/Histogram/Histogram";
-import Header from "../../components/Header/Header";
 
 // Styles
 import styles from "./dashboard.module.css";
@@ -56,14 +54,6 @@ const Dashboard: FC = () => {
 
   const isLoading = isPending || isStatePending || isStatesPending;
 
-  const handleStateSelect = (id: string) => {
-    navigate(`/${id}`);
-  };
-
-  const handleStateRemove = () => {
-    navigate("/");
-  };
-
   const selectedState =
     statesList.find((state) => state.value === stateId)?.label || "";
 
@@ -71,24 +61,18 @@ const Dashboard: FC = () => {
 
   return (
     <main className={styles.container}>
-      <Header label={"US Demographic data"} />
-      <AutoComplete
-        placeholder="Search state..."
-        data={statesList}
-        value={selectedState}
-        onSelect={handleStateSelect}
-        onClear={handleStateRemove}
-      />
-      <Histogram
-        label={`${selectedState || "US"} Demographic data`}
-        years={years}
-        onChange={handleYearChange}
-        defaultValues={{ fromYear, toYear }}
-        data={filteredData}
-        onClick={(id: string | number) => {
-          !selectedState && navigate(`/year/${id}`);
-        }}
-      />
+      <section className={styles.histogram}>
+        <Histogram
+          label={`${selectedState || "US"} Demographic data`}
+          years={years}
+          onChange={handleYearChange}
+          defaultValues={{ fromYear, toYear }}
+          data={filteredData}
+          onClick={(id: string | number) => {
+            !selectedState && navigate(`/year/${id}`);
+          }}
+        />
+      </section>
     </main>
   );
 };

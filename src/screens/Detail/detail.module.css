@@ -5,7 +5,6 @@
   flex-direction: column;
   flex: 1;
   gap: 16px;
-  height: 100vh;
   overflow-y: auto;
   width: 100%;
 }
@@ -19,5 +18,15 @@
   padding-bottom: 8px;
   scrollbar-width: 0px;
   scrollbar-width: none;
+  width: 100%;
+}
+
+.linkWrapper {
+  align-items: flex-start;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  max-height: 600px;
   width: 100%;
 }
