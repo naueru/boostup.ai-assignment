@@ -1,12 +1,19 @@
 .container {
-  font-size: 28;
   font-weight: bold;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
+
 .primary {
   background-color: var(--accent-color);
   color: var(--secondary-text-color);
 }
+
 .secondary {
-  background-color: var(--white);
   color: var(--accent-color);
+}
+
+.secondary:hover {
+  background-color: var(--white);
 }
