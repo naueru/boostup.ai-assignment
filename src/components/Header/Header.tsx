@@ -1,23 +1,54 @@
+// Hooks
+import { useNavigate, useParams } from "react-router-dom";
+
 // Types
 import { FC } from "react";
 
 // Components
+import useFetchStates from "../../hooks/useFetchStates";
+import AutoComplete from "../AutoComplete/AutoComplete";
 import Branding from "../Branding/Branding";
+import Banner from "../Banner/Banner";
+import Link from "../Link/Link";
 
 // Styles
 import styles from "./header.module.css";
 
-export type THeaderProps = {
-  label: string;
-};
+const Header: FC = () => {
+  const { stateId } = useParams();
+  const { isLoading: isStatesPending, data: statesList } = useFetchStates();
 
-const Header: FC<THeaderProps> = ({ label }) => {
+  const navigate = useNavigate();
+  const handleStateSelect = (id: string) => {
+    navigate(`/${id}`);
+  };
+
+  const handleStateRemove = () => {
+    navigate("/");
+  };
+  const selectedState =
+    statesList.find((state) => state.value === stateId)?.label || "";
   return (
     <header className={styles.container}>
-      <div className={styles.content}>
+      <Banner label="The graphic values may be altered for demostration purposes" />
+      <nav className={styles.content}>
         <Branding size="m" />
-        <h2 className={styles.title}>{label}</h2>
-      </div>
+        <AutoComplete
+          placeholder="Search state..."
+          data={statesList}
+          value={selectedState}
+          onSelect={handleStateSelect}
+          onClear={handleStateRemove}
+          loading={isStatesPending}
+        />
+        <Link
+          label="Source"
+          href="https://github.com/naueru/boostup.ai-assignment"
+          type="button"
+        >
+          <div className={styles.icon} />
+        </Link>
+      </nav>
     </header>
   );
 };
