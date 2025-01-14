@@ -1,8 +1,9 @@
 // Types
 import { FC, useEffect, useState } from "react";
 
-// Component
+// Components
 import Item, { TItemData } from "./components/Item/Item";
+import Spinner from "../Spinner/Spinner";
 
 // Styles
 import styles from "./autoComplete.module.css";
@@ -13,6 +14,7 @@ export type TAutoCompleteProps = {
   data: TItemData[];
   onSelect: Function;
   onClear: Function;
+  loading?: boolean;
 };
 
 const AutoComplete: FC<TAutoCompleteProps> = ({
@@ -21,6 +23,7 @@ const AutoComplete: FC<TAutoCompleteProps> = ({
   data,
   onSelect,
   onClear,
+  loading,
 }) => {
   const [filter, setFilter] = useState(value);
 
@@ -58,15 +61,21 @@ const AutoComplete: FC<TAutoCompleteProps> = ({
       </div>
       <div className={styles.suggestionsContainer}>
         <div className={styles.suggestionsWrapper}>
-          <ul className={styles.suggestionsList}>
-            {filteredData.map((item: TItemData, index) => (
-              <Item
-                key={`autocomplete_item_${index}`}
-                onClick={handleSelect}
-                {...item}
-              />
-            ))}
-          </ul>
+          {loading ? (
+            <div className={styles.spinnerContainer}>
+              <Spinner size="s" />
+            </div>
+          ) : (
+            <ul className={styles.suggestionsList}>
+              {filteredData.map((item: TItemData, index) => (
+                <Item
+                  key={`autocomplete_item_${index}`}
+                  onClick={handleSelect}
+                  {...item}
+                />
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>
