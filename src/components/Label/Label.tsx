@@ -6,10 +6,15 @@ import styles from "./label.module.css";
 
 export type TLabelProps = {
   label: string;
+  alt?: boolean;
 };
 
-const Label: FC<TLabelProps> = ({ label }) => {
-  return <label className={styles.label}>{label}</label>;
+const Label: FC<TLabelProps> = ({ label, alt }) => {
+  return (
+    <label className={`${styles.label} ${alt ? styles.alt : ""}`}>
+      {label}
+    </label>
+  );
 };
 
 export default Label;
