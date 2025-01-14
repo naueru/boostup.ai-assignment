@@ -11,17 +11,13 @@ export type TBrandingProps = {
 
 const Branding: FC<TBrandingProps> = ({ size = "m" }) => {
   const dimension =
-    size.toLowerCase() === "s"
-      ? "30px"
-      : size.toLowerCase() === "m"
-      ? "50px"
-      : "80px";
+    size.toLowerCase() === "s" ? 30 : size.toLowerCase() === "m" ? 50 : 80;
   return (
     <Link to="/">
       <div className={styles.container}>
         <div
           className={styles.img}
-          style={{ width: dimension, height: dimension }}
+          style={{ width: `${dimension * 3}px`, height: `${dimension}px` }}
         />
       </div>
     </Link>
