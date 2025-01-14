@@ -1,5 +1,7 @@
+// Core
+import { FC, useState } from "react";
+
 // Types
-import { FC } from "react";
 import { IParsedElement } from "../../utils/parser";
 
 // Components
@@ -26,15 +28,25 @@ const Histogram: FC<THistogramProps> = ({
   onClick,
   label,
 }) => {
+  const [graph, setGraph] = useState(0);
+
+  const handleGraphChange = (value: number) => {
+    setGraph(value);
+    return {};
+  };
+
   return (
-    <section className={styles.chartContainer}>
+    <div className={styles.chartContainer}>
       <Filters
         years={years}
         onChange={onChange}
         defaultValues={defaultValues}
+        onGraphSelect={handleGraphChange}
+        selectedGraphic={graph}
       />
-      <Chart data={data} onClick={onClick} label={label} />
-    </section>
+      <Chart data={data} onClick={onClick} label={label} graph={graph} />
+    </div>
   );
 };
+
 export default Histogram;
