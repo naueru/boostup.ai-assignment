@@ -4,11 +4,10 @@ import useFetchYear from "../../hooks/useFetchYear";
 import useFetchStates from "../../hooks/useFetchStates";
 
 // Components
-import Header from "../../components/Header/Header";
-import Link from "../../components/Link/Link";
 import LoadingCurtain from "../../components/LoadingCurtain/Loadingcurtain";
 import Table from "../../components/Table/Table";
 import Title from "../../components/Title/Title";
+import Link from "../../components/Link/Link";
 
 // Styles
 import styles from "./detail.module.css";
@@ -29,12 +28,13 @@ const Detail = () => {
 
   return (
     <main className={styles.container}>
-      <Header label="US Demographic data" />
       <Title label={`Demographic data for year ${year}`} />
       <div className={styles.tableWrapper}>
         <Table data={data} onClick={handleClick} />
       </div>
-      <Link href="/" label="BACK" type="button" />
+      <div className={styles.linkWrapper}>
+        <Link href="/" label="BACK" type="button" />
+      </div>
     </main>
   );
 };
