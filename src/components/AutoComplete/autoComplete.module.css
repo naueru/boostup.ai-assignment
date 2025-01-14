@@ -79,3 +79,9 @@
 .content:focus-within + .suggestionsContainer {
   display: flex;
 }
+
+.spinnerContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
