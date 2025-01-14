@@ -1,30 +1,35 @@
 .container {
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
+  align-items: center;
+  border-radius: 30px;
+  display: flex;
   font-weight: bold;
-  padding: 4px 8px;
+  gap: 8px;
+  line-height: 1;
+  padding: 8px 16px;
   text-decoration: none;
+}
+
+.container:hover {
+  cursor: pointer;
 }
 
 .link,
 .link:visited,
 .link:active {
-  color: var(--accent-color);
+  background-color: var(--button-secondary);
 }
 
 .link:hover {
-  color: var(--accent-color-75);
-  cursor: pointer;
+  background-color: var(--button-secondary-highlight);
 }
 
 .button,
 .button:visited,
 .button:active {
-  background-color: var(--accent-color);
+  background-color: var(--button-primary);
   color: var(--secondary-text-color);
 }
 
 .button:hover {
-  background-color: var(--accent-color-75);
-  cursor: pointer;
+  background-color: var(--button-primary-highlight);
 }
