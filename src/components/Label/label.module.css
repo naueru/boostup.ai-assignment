@@ -1,9 +1,17 @@
 .label {
+  align-items: center;
   color: var(--primary-text-color);
-  font-size: 18px;
+  display: flex;
+  font-size: 16px;
   font-weight: bold;
 }
 
 .alt {
   color: var(--primary-text-color-alt);
+}
+
+@media (min-width: 800px) {
+  .label {
+    font-size: 18px;
+  }
 }
