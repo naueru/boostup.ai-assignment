@@ -6,6 +6,7 @@
   flex: 1;
   flex-direction: column;
   gap: 20px;
+  overflow-x: auto;
   padding: 20px 40px 40px;
   text-align: center;
 }
@@ -16,6 +17,18 @@
   gap: 10px;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto repeat(2, 30px);
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
+}
+
+.grid {
+  scrollbar-width: none;
+}
+
+.grid {
+  -ms-overflow-style: none;
 }
 
 .range {
