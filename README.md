@@ -64,6 +64,19 @@ Alternatively Open your browser and navigate to https://boostupai-assignment-558
 Histogram
 Years range selector
 Autocomplete search bar
+
+Screenshots:
+![imagen](https://github.com/user-attachments/assets/2cce0705-5690-4d1b-a31f-75eec3b83f23)
+
+![imagen](https://github.com/user-attachments/assets/ab290c96-26a5-49ed-bf6c-e2d63cca1792)
+
+![imagen](https://github.com/user-attachments/assets/f618beda-d3b6-42b8-b41d-ccd5259604a5)
+
+![imagen](https://github.com/user-attachments/assets/22ef4b50-505f-4be9-b2a8-7612b26eb5e9)
+
+
+
+
 Table with details
 
 License
