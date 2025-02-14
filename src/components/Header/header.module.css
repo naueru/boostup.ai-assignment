@@ -12,11 +12,23 @@
 
 .content {
   align-items: center;
+  box-sizing: border-box;
   display: flex;
   gap: 16px;
   justify-content: space-between;
   max-width: var(--screens-max-width);
+  padding: 0 32px;
   width: 100%;
+}
+
+.navItem {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.navItem:first-child {
+  justify-content: flex-start;
 }
 
 .title {
@@ -30,9 +42,17 @@
   background-image: url("../../assets/Octicons-mark-github-w.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 30px;
+  background-size: 20px;
   display: flex;
-  height: 30px;
+  height: 20px;
   justify-content: center;
-  width: 30px;
+  width: 20px;
+}
+
+@media (min-width: 800px) {
+  .icon {
+    background-size: 30px;
+    height: 30px;
+    width: 30px;
+  }
 }
